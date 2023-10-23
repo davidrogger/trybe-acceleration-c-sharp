@@ -1,6 +1,6 @@
 # Aceleração C#
 
-##### Seção 01 - Iniciando jornada na Aceleração ⏳
+##### Seção 01 - Iniciando jornada na Aceleração ✅
 
 - [X] Dia 01: _Como decidir se essa Aceleração é para você ?_
 - [X] Dia 02: _Prática e certificação_
