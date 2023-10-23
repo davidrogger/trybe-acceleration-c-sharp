@@ -112,3 +112,57 @@ A divisão se resume em 3 principais frameworks, visando assim a uma melhor sepa
 - `Xamarin`: Criado como uma empresa de desenvolvimento de aplicativos móveis multiplataforma entre android, ios, MacOS e Windows Phone.
 
 >>mais infos: [Documentação](https://learn.microsoft.com/pt-br/dotnet/standard/library-guidance/cross-platform-targeting)
+
+## Comando de ajuda
+
+Para ter via CLI comandos auxiliares para executar o dotnet use o comando:
+
+```
+dotnet --help
+```
+
+Para ter informações de um comando específico, é possível usar o help após ele, exemplo:
+
+```
+dotnet new --help
+```
+
+## Criando projetos .NET com a CLI
+
+Para fase inicial será realizadas praticas usando um ambiente de console simples.
+
+Para criar um projeto de console, basta usando o CLI `dotnet new console`
+
+## Estrutura de Projeto
+
+Ao criar um novo projeto de console, é gerado alguns arquivos:
+
+1. Program.cs
+>>Ponto de partida do projeto, Arquivo escreve o código em C# que será executado quando rodar o projeto
+2. <nomeDoProjeto>.csproj
+>>Base de configuração do projeto, usado para interpretar todas as dependências, com diversas informações de configurações, bibliotecas, dependências de terceiros usados, requisitos da plataforma,, controle de versão, configurações do servidor, etc... (assim como package.json em ambiente javascript)
+3. Pasta `obj/`
+>>Onde ficam todas as dependências do projeto após rodar o comando `dotnet restore`. Semelhante a funcionalidade do `npm install`. É sempre bom realizar o comando dotnet para garantir que todas as dependências foram devidamente baixadas e atualizadas.
+
+## Como funciona o C#
+
+A forma como escrever um código em linguagens de alto nível, se assemelham mais com a nossa linguagem natural do que com a linguagem de máquina.\
+
+Porém os computadores precisam entender essa linguagem para as coisas funcionarem, para isso é realizada a `compilação` que é uma forma de tradução para linguagem que a máquina entenda.\
+
+Os compiladores são programas utilizados no processo de "tradução", leem e traduzem uma linguagem de alto nível para uma linguagem que os computadores entendam.\
+
+Existem duas categorias diferentes de linguagens de programação em alto nível: as compiladas e as interpretadas.\
+C# é uma linguagem compilada, pois precisa passar pelo processo de compilação para que os programas criados com ela possam ser executados.\
+
+Na linguagem interpretada o código é criado e lido por outro programa que precisa estar rodando junto ao programa criado, como um tradutor que escuta uma pessoa falar em uma língua e realiza a tradução enquanto ela fala.\
+
+O programa é executado junto da aplicação escrita em linguagens interpretadas para fazer a tradução em tempo real é uma máquina virtual.\
+
+Exemplo de linguagem interpretada é o Javascript, que usa outro programa executando que entende Javascript diretamente e transforma para código do computador em tempo de execução. Por isso é possível escrever um código JS direto no console do navegador e já executa-lo.\
+
+No caso do JS, esse programa é chamado Engine Javascript e quando usamos o NodeJS ou o navegador Chrome, para executar JS, a engine responsável é o V8 Engine.
+
+
+
+
