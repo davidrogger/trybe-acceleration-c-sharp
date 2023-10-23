@@ -178,3 +178,28 @@ Existem vários modelos, para consulta-los via CLI, basta usar o comando `dotnet
 
 Para criação do projeto em uma pasta especifica durante o CLI, basta adicionar a flag -o seguindo do nome do projeto.
 
+# Tipos C#
+
+## Compreendendo variáveis
+
+São como uma caixa de organização, onde podemos guardar determinadas informação, definindo seu tipo, podemos guardar qualquer elemento lá, desde que ele obedeça o tipo declarado, variando seu valor e não seu conteúdo.\
+Ao criarmos uma variável, um espaço específico na memória RAM é reservado para manipulação de dados. Toda variável deve possuir um nome como uma "etiqueta", pois é por meio desse nome que ocorre a manipulação da informação/dado.
+
+### Tipos primitivos
+
+| TIPO | VALORES |
+| -- | -- |
+| bool | true e false |
+| byte | 0 a 255 |
+| sbyte | -128 a 127 |
+| short | -32.768 a 32.767 |
+| ushort | 0 a 65.535 |
+| int | -2.147.483.648 a 2.147.483.647 |
+| uint | 0 a 4.294.967.295 |
+| long | -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807 |
+| ulong | 0 a 18.446.744.073.709.551.615 |
+| float | Valores flutuante de até 7 dígitos: -3.402823e38 a 3.402823e38 |
+| double | Valores de ponto flutuante de até 15 dígitos: -1.79769313486232e308 a 1.79769313486232e308  |
+| decimal | Números com até 28 casa decimais: 0.991m a 33.333m |
+| char | Um único caractere delimitado por aspas simples: "string" |
+
