@@ -87,3 +87,28 @@ Verificar se foi instalado com sucesso:
 dotnet --info
 ```
 
+## VS Code com C#
+
+Para configurar todo suporte de marcação de sintaxe, IntelliSense, definições e Debugging para o C# é importante instalar a extensão no VS Code: [C# Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
+
+Para ferramenta de análise de código(linter) será usado o `Roslyn Analyzer`, acessando o `ctrl + shift + p`, `>Preferences: Open Settings (JSON)`, abra o arquivos json, e adicione:
+
+```
+ "[csharp]": {
+     "editor.defaultFormatter": "ms-dotnettools.csharp"
+ },
+ "omnisharp.enableMsBuildLoadProjectsOnDemand": true,
+ "omnisharp.enableRoslynAnalyzers": true,
+```
+
+## Versões do dotNET
+
+Com a revolução de diversas versões dotNET, a MS criou o conceito de `.NET Standard` uma especificação padrão do conjunto de bibliotecas que possui uma versão para cada framework `.NET` ao qual está associada.
+
+A divisão se resume em 3 principais frameworks, visando assim a uma melhor separação entre suas responsabilidades e objetivos:
+
+- `.NET Framework`: Carro chefe da MS, o produto que por muito tempo seguiu como o mais utilizado pela MS e outros desenvolvedores .NET. É um framework para aplicações Desktop como Windows Forms, ASP.NET para backend e criação de APIs e aplicações de Console.
+- `.NET core`: Mais recente, grátis e de código aberto, seu principal diferencial é cross-platform, ou seja, ser executado em Windows, Linux e MacOS. Além disso, trabalha muito bem com alta performance, sistemas escaláveis, Docker, e possui suporte para criação de aplicações de console, ASP.NET Core, Cloud, Microsserviços e UWP.
+- `Xamarin`: Criado como uma empresa de desenvolvimento de aplicativos móveis multiplataforma entre android, ios, MacOS e Windows Phone.
+
+>>mais infos: [Documentação](https://learn.microsoft.com/pt-br/dotnet/standard/library-guidance/cross-platform-targeting)
