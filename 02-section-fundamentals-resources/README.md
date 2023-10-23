@@ -46,3 +46,44 @@ Tendo em mente que é a principal plataforma de desenvolvimento da MS, seus prin
 - Aplicações em servidor, na nuvem
 - Jogos
 - Microsserviços
+
+## Instalando o DotNET Core no Linux
+
+Verificar pacotes instalados dotnet:
+
+```
+apt list --installed "dotnet*"
+```
+
+Remover pacotes existentes para instalar pacotes específicos:
+
+```
+sudo apt-get remove 'dotnet*'
+```
+
+Realizar update no sistema:
+
+```
+sudo apt-get update
+```
+
+Instalando runtime dotNET:
+
+```
+sudo apt install aspnetcore-runtime-6.0
+```
+
+Após instalação verificar os pacotes instalado usando apt list.\
+
+Agora instalar o SDK dotNET, para desenvolvimento dos aplicativos na plataforma:
+
+```
+sudo apt install dotnet6
+```
+
+Verificar se foi instalado com sucesso:
+
+```
+dotnet --info
+```
+
