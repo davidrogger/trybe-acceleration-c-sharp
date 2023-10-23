@@ -203,3 +203,45 @@ Ao criarmos uma variável, um espaço específico na memória RAM é reservado p
 | decimal | Números com até 28 casa decimais: 0.991m a 33.333m |
 | char | Um único caractere delimitado por aspas simples: "string" |
 
+# Tipos de linguagens
+
+Durante a criação da variável em C# é necessário e definição de seu tipo explicitamente, pois ela é uma linguagem fortemente tipada. A partir de sua versão 3.0, tornou-se possível a tipagem por inferência, onde a variável recebe seu tipo ao declarar o conteúdo.
+
+```
+var nome = "João"; // O tipo da variável 'nome' é inferido como string.
+var idade = 30;     // O tipo da variável 'idade' é inferido como int.
+
+```
+
+# Outros tipos de dados
+
+## Enum
+
+Enumerações, tipo de dado constante, fortemente tipado e estático. Possuem valores limitados a um conjunto de nomes simbólicos chamados elementos ou membros e não podem ser declaradas em métodos. Este tipo de dado é usado quando há necessidade de representar algum conjunto de dado que não sofre tanta alteração no decorrer do desenvolvimento do projeto.\
+
+Exemplo:
+```
+namespace namespaceExample;
+
+//Criando um enum
+enum CardinalPoints
+{
+    Norte,
+    Sul,
+    Leste,
+    Oeste
+};
+
+class Program
+{
+    public static void Main()
+    {
+        //Utilizando um enum
+        CardinalPoints direction = CardinalPoints.Norte;
+        Console.WriteLine("Ponto Cardeal: " + direction);
+    }
+}
+
+```
+
+São estrutura que precisam de contexto de compilação, por isso é criada uma classe e um namespace para estruturá-la.
