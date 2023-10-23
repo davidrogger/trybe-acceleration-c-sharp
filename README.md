@@ -2,10 +2,10 @@
 
 ##### Seção 01 - Iniciando jornada na Aceleração ⏳
 
-- [ ] Dia 01: _Como decidir se essa Aceleração é para você ?_
-- [ ] Dia 02: _Prática e certificação_
-- [ ] Dia 03: _Organização de estudos_
-- [ ] Dia 04: _Comunidade_
+- [X] Dia 01: _Como decidir se essa Aceleração é para você ?_
+- [X] Dia 02: _Prática e certificação_
+- [X] Dia 03: _Organização de estudos_
+- [x] Dia 04: _Comunidade_
 
 ##### Seção 02 - Fundamentos e Recursos da Linguagem C# ⏳
 
