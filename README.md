@@ -5,11 +5,11 @@
 - [X] Dia 01: _Como decidir se essa Aceleração é para você ?_
 - [X] Dia 02: _Prática e certificação_
 - [X] Dia 03: _Organização de estudos_
-- [x] Dia 04: _Comunidade_
+- [X] Dia 04: _Comunidade_
 
 ##### Seção 02 - Fundamentos e Recursos da Linguagem C# ⏳
 
-- [ ] Dia 01: _Hello, world em C# e .NET_
+- [X] Dia 01: _Hello, world em C# e .NET_
 - [ ] Dia 02: _Variáveis com Tipo, Condicionais e Loops_
 - [ ] Dia 03: _Arrays, Funções e Exceções_
 - [ ] Dia 04: _Manipulação de Tipos e Debugger_
