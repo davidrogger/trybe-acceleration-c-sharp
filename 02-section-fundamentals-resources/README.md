@@ -163,6 +163,18 @@ Exemplo de linguagem interpretada é o Javascript, que usa outro programa execut
 
 No caso do JS, esse programa é chamado Engine Javascript e quando usamos o NodeJS ou o navegador Chrome, para executar JS, a engine responsável é o V8 Engine.
 
+# Executando o código
 
+Como C sharp é um código compilado, é necessário realizar a compilação para conseguirmos executa-lo para isso é usado os comandos:
 
+```
+dotnet build
+dotnet run
+```
+
+## Criando outros tipos de aplicações .NET
+
+Existem vários modelos, para consulta-los via CLI, basta usar o comando `dotnet new -l`, que imprime na tela os modelos disponíveis.
+
+Para criação do projeto em uma pasta especifica durante o CLI, basta adicionar a flag -o seguindo do nome do projeto.
 
