@@ -111,7 +111,7 @@ A divisão se resume em 3 principais frameworks, visando assim a uma melhor sepa
 - `.NET core`: Mais recente, grátis e de código aberto, seu principal diferencial é cross-platform, ou seja, ser executado em Windows, Linux e MacOS. Além disso, trabalha muito bem com alta performance, sistemas escaláveis, Docker, e possui suporte para criação de aplicações de console, ASP.NET Core, Cloud, Microsserviços e UWP.
 - `Xamarin`: Criado como uma empresa de desenvolvimento de aplicativos móveis multiplataforma entre android, ios, MacOS e Windows Phone.
 
->>mais infos: [Documentação](https://learn.microsoft.com/pt-br/dotnet/standard/library-guidance/cross-platform-targeting)
+>mais infos: [Documentação](https://learn.microsoft.com/pt-br/dotnet/standard/library-guidance/cross-platform-targeting)
 
 ## Comando de ajuda
 
@@ -138,11 +138,11 @@ Para criar um projeto de console, basta usando o CLI `dotnet new console`
 Ao criar um novo projeto de console, é gerado alguns arquivos:
 
 1. Program.cs
->>Ponto de partida do projeto, Arquivo escreve o código em C# que será executado quando rodar o projeto
+>Ponto de partida do projeto, Arquivo escreve o código em C# que será executado quando rodar o projeto
 2. <nomeDoProjeto>.csproj
->>Base de configuração do projeto, usado para interpretar todas as dependências, com diversas informações de configurações, bibliotecas, dependências de terceiros usados, requisitos da plataforma,, controle de versão, configurações do servidor, etc... (assim como package.json em ambiente javascript)
+>Base de configuração do projeto, usado para interpretar todas as dependências, com diversas informações de configurações, bibliotecas, dependências de terceiros usados, requisitos da plataforma,, controle de versão, configurações do servidor, etc... (assim como package.json em ambiente javascript)
 3. Pasta `obj/`
->>Onde ficam todas as dependências do projeto após rodar o comando `dotnet restore`. Semelhante a funcionalidade do `npm install`. É sempre bom realizar o comando dotnet para garantir que todas as dependências foram devidamente baixadas e atualizadas.
+>Onde ficam todas as dependências do projeto após rodar o comando `dotnet restore`. Semelhante a funcionalidade do `npm install`. É sempre bom realizar o comando dotnet para garantir que todas as dependências foram devidamente baixadas e atualizadas.
 
 ## Como funciona o C#
 
@@ -213,6 +213,46 @@ var idade = 30;     // O tipo da variável 'idade' é inferido como int.
 
 ```
 
+Existem algumas regras para usar variáveis implícitas por inferência:
+
+1. Variável com tipo implícito só pode ser usada e inicializada no mesmo trecho em que ela existe.
+```
+✅
+var numero = 42; 
+Console.WriteLine(numero);
+```
+```
+❌
+var numero;
+numero = 42;
+Console.WriteLine(numero);
+```
+2. Não se pode declarar uma variável implícita como null
+```
+❌
+var numero = null;
+Console.WriteLine(numero);
+```
+3. Variáveis implícitas não podem ser atributos de classes.
+```
+✅
+public class Exemplo
+{
+    public int Numero { get; set; }
+}
+```
+```
+❌
+public class Exemplo
+{
+    public var Numero { get; set; } // Isso não é permitido para atributos de classes
+}
+```
+4. Não se pode inicializar múltiplas variáveis implícitas numa mesma instrução.
+```
+❌
+var numero1 = 42, numero2 = 10; // Isso não é permitido
+```
 # Outros tipos de dados
 
 ## Enum
@@ -245,3 +285,22 @@ class Program
 ```
 
 São estrutura que precisam de contexto de compilação, por isso é criada uma classe e um namespace para estruturá-la.
+
+## Dados que representam números inteiros
+
+Dependendo de requisitos que são principalmente relacionados ao uso de memória, com um controle mais preciso para armazenamento de valores negativos com **signed** e para valores positivos e zero com o **unsigned**.
+
+| Tipo | Tamanho | Mínimo | Máximo |
+| ---- | ------- | ------ | ------ |
+| sbyte | 8-bit (signed) | -128 | 127 |
+| byte | 8-bit (unsigned) | 0 | 255 |
+| short | 16-bit (signed) | -32768 | 32767 |
+| ushort | 16-bit (unsigned) | 0 | 65535 |
+| int | 32-bit (signed) | -2147483648 | 2147483647 |
+| uint | 32-bit (unsigned) | 0 | 4294967295 |
+| long | 64-bit (signed) | -9223372036854775808 | 9223372036854775807 |
+| ulong | 64-bit (unsigned) | 0 | 18446744073709551615 |
+
+## Constantes
+
+É um valor que não pode ser alterado no decorrer do tempo de execução.\
