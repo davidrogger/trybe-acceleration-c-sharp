@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/02-section-fundamentals-resources/02-section-exercises/02-section-exercises.csproj",
+      "projectUniqueName": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/02-section-fundamentals-resources/02-section-exercises/example/02-section-exercises.csproj",
       "projectName": "02-section-exercises",
-      "projectPath": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/02-section-fundamentals-resources/02-section-exercises/02-section-exercises.csproj",
+      "projectPath": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/02-section-fundamentals-resources/02-section-exercises/example/02-section-exercises.csproj",
       "packagesPath": "/home/davidrogger/.nuget/packages/",
-      "outputPath": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/02-section-fundamentals-resources/02-section-exercises/obj/",
+      "outputPath": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/02-section-fundamentals-resources/02-section-exercises/example/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/davidrogger/.nuget/NuGet/NuGet.Config"
