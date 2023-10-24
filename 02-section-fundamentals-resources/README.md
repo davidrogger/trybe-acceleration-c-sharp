@@ -405,3 +405,12 @@ Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US", false);
 ```
 
 Definindo a cultura en-US como false, é usado a vírgula.
+
+## Recursos adicionais
+
+### Seção 01
+
+- [Documentação do C#](https://learn.microsoft.com/pt-br/dotnet/csharp/)
+- [Estrutura geral de um programa em C#](https://learn.microsoft.com/pt-br/dotnet/csharp/fundamentals/program-structure/)
+- [Tipos de valor do C#](https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/builtin-types/value-types)
+- [Operadores aritméticos](https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/operators/arithmetic-operators)
