@@ -197,3 +197,97 @@ usados para avaliar duas expressões booleans e retornam um valor boolean.
 | `&&` | AND/E | a > b && b < 4 | Verdade se todas as expressões lógicas forem avaliadas como verdadeiras |
 | `||` | OR/ou | a > b || b < 4 | Verdade se pelo menos uma expressões lógicas for avaliada como verdadeira |
 | `!` | NOT/Não | !(a > b)  | É uma expressão de negação, sendo assim, inverte o valor da expressão |
+
+
+## Estrutura de repetição
+
+### while and do/while
+
+while pode executar 0 ou mais vezes quando usado:
+
+```
+var count = 0;
+while (count < 10)
+{
+    Console.WriteLine("count " + count);
+    count++;
+}
+```
+
+do/while, é executado pelo menos 1 vez ou mais vezes.
+```
+var count = 0;
+do
+{
+    Console.WriteLine("count " + count);
+    count++;
+}
+while (count < 10);
+```
+
+`do/while` testará a variável após executar a primeira vez, as instruções de `while`, testa antes de executar o bloco.
+
+### Estrutura For
+
+É composta por três expressões separadas por ponto e vírgula:
+
+```
+for (inicialização; condição; incremento)
+{
+    //comandos;
+}
+```
+- A inicialização, fica disponível apenas no escopo do loop.
+- A condição na primeira execução do loop ela é testada após a inicialização, nas demais iterações a condição é testada após o incremento.
+- A expressão de incremento é executada ao final do bloco de instruções e antes da verificação de condição.
+
+```
+for (int count = 0; count < 3; count++)
+{
+    Console.WriteLine($"numero: {count}")
+}
+```
+
+### Estrutura foreach
+
+Usado para percorrer os elementos de um array ou coleção.
+
+```
+foreach (tipo elemento in coleção)
+{
+    //comandos;
+}
+```
+
+Na declaração temos a inicialização de uma variável do mesmo tipo da coleção, o operador in com a coleção. A cada iteração um elemento da coleção será atribuído ao elemento, então o bloco de comandos será executado.
+
+```
+string[] names = new string[] {"Hulk", "Thor", "Loki"};
+foreach (var name in names)
+{
+    Console.WriteLine(name);
+}
+```
+
+### Instruções de uma linha
+
+O uso das chaves não é obrigatório para definir uma instrução de uma linha;
+
+```
+for (int count = 0; count < 10; count++ )
+    Console.WriteLine(count);
+```
+
+```
+int[] numbers = new int[] { 1, 2, 3, 4 };
+int sum = 0
+foreach (int number in numbers)
+    sum += number;
+Console.WriteLine(sum);
+```
+
+```
+bool isClosed = false;
+while (!isClosed)
+    isClosed = CloseConnection();
+```
