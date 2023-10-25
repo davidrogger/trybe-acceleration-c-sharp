@@ -109,3 +109,91 @@ bool canConvert = Int32.TryParse(userEntry, out int valueConverted)
 ```
 
 Ele retorna um boolean, se é possível a conversão, e pode-se coletar a conversão no segundo parâmetro. Caso seja false, o segundo parâmetro retorna zero.
+
+## Estruturas de controle
+
+O comportamento de um sistema é reflexo do caminho percorrido pelo fluxo de execução das instruções.\
+A ordem que as instruções são executadas em um programa é chamada de fluxo de controle ou fluxo de execução. O fluxo de controle pode varias de acordo como o programa reage às entradas recebidas em tempo de execução.
+
+```
+public class Program
+{
+  public static void Main()
+  {
+    Console.WriteLine("Informe o raio de um círculo (deve ser um número inteiro)");
+    string? consoleInput = Console.ReadLine();
+    bool canConvert = Int32.TryParse(consoleInput, out int radius);
+
+    if(canConvert)
+    {
+      const double pi = 3.14159;
+      double circumference = pi * (2 * radius);
+      Console.WriteLine($"A circunferência de um circulo com raio {radius} é igual a {circumference}");
+    }
+    else
+    {
+      Console.WriteLine("O texto digitado não é um número inteiro.");
+    }
+  }
+}
+```
+
+## Estrutura de seleção `if`
+
+### Instruções de única linha
+
+Sempre é definido o bloco do if por chaves `{}`, Porém o uso não é obrigatório:
+
+```
+if(number > 10)
+    Console.WriteLine("Maior que 10");
+else
+    Console.WriteLine("Menor ou igual a 10");
+```
+
+Pode-se reduzir a quebra de linha:
+```
+if(number > 10) Console.WriteLine("Maior que 10");
+else Console.WriteLine("Menor ou igual a 10");
+```
+## Estrutura de seleção "switch/case"
+
+```
+switch (number)
+{
+    case > 0:
+        Console.WriteLine("maior que 0");
+        break;
+    case 0:
+        Console.WriteLine("igual a zero");
+        break;
+    default:
+        Console.WriteLine("menor que zero");
+        break;
+}
+```
+
+- `case` é finalizado por dois pontos
+- `break` define o final do bloco
+- `default` será executado se nenhum case for satisfeito
+
+## Operadores de comparação no C#
+
+| Operador | Descrição | Exemplo | Resultado Verdadeiro |
+| -- | -- | -- | -- |
+| `>` | Maior | a > b | Se `a` for maior que `b` |
+| `>=` | Maior ou igual | a >= b | Se `a` for maior ou igual a `b` |
+| `<` | Menor | a < b | Se `a` for menor que `b` |
+| `<=` | Menor ou igual | a <= b | Se `a` for menor ou igual a `b` |
+| `==` | Igual | a == b | Se `a` for igual a `b` |
+| `!=` | Diferente | a != b | Se `a` for diferente a `b` |
+
+## Operadores lógicos
+
+usados para avaliar duas expressões booleans e retornam um valor boolean.
+
+| Operador | Descrição | Exemplo | Resultado |
+| -- | -- | -- | -- |
+| `&&` | AND/E | a > b && b < 4 | Verdade se todas as expressões lógicas forem avaliadas como verdadeiras |
+| `||` | OR/ou | a > b || b < 4 | Verdade se pelo menos uma expressões lógicas for avaliada como verdadeira |
+| `!` | NOT/Não | !(a > b)  | É uma expressão de negação, sendo assim, inverte o valor da expressão |
