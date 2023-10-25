@@ -84,3 +84,28 @@ Unhandled exception. System.OverflowException: Value was either too large or too
 ```
 
 Caso seja possível realizar a conversão, ele a realiza.
+
+## Conversão de string para números
+
+É possível realizar a conversão de strings para números, em algumas situações:
+
+```
+public class Programa
+{
+    public static void Main()
+    {
+        string someString = "42";
+        int convertInt = Convert.ToInt32(someString);
+
+        Console.WriteLine(convertInt);
+    }
+}
+```
+
+Porém não é possível garantir que o conteúdo pode ser convertido para número, para isso é usado o `TryParse`.
+
+```
+bool canConvert = Int32.TryParse(userEntry, out int valueConverted)
+```
+
+Ele retorna um boolean, se é possível a conversão, e pode-se coletar a conversão no segundo parâmetro. Caso seja false, o segundo parâmetro retorna zero.
