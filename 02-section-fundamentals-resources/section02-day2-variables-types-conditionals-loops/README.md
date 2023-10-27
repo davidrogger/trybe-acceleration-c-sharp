@@ -291,3 +291,10 @@ bool isClosed = false;
 while (!isClosed)
     isClosed = CloseConnection();
 ```
+
+## Recursos adicionais
+
+- [Como converter usando a correspondência de padrões](https://learn.microsoft.com/pt-br/dotnet/csharp/fundamentals/tutorials/safely-cast-using-pattern-matching-is-and-as-operators)
+- [Operadores de Comparação](https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/operators/comparison-operators)
+- [Instruções de seleção - if, else e switch](https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/statements/selection-statements)
+- [Instruções for, foreach, do e while](https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/statements/iteration-statements)
