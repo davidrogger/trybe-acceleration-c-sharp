@@ -12,7 +12,7 @@
 - [X] Dia 01: _Hello, world em C# e .NET_
 - [X] Dia 02: _Variáveis com Tipo, Condicionais e Loops_
 - [X] Dia 03: _Arrays, Funções e Exceções_
-- [ ] Dia 04: _Manipulação de Tipos e Debugger_
+- [X] Dia 04: _Manipulação de Tipos e Debugger_
 - [ ] Dia 05: _Projeto - TryBank_
 
 ##### Seção 03 - Orientação a Objetos com C# ⏳
