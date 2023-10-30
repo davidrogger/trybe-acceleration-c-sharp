@@ -231,3 +231,10 @@ finally
 Principal objetivo da instrução Finally é realizar a limpeza de ações designadas em um bloco try, sendo uma boa prática durante o desenvolvimento, até mesmo quando não há exceções sendo esperadas.
 
 Usando tr-catch-finally garante maior segurança, qualidade e controle durante o desenvolvimento.
+
+## Recursos Adicionais
+
+- [Métodos](https://learn.microsoft.com/pt-br/dotnet/csharp/programming-guide/classes-and-structs/methods)
+- [Matrizes unidimensionais](https://learn.microsoft.com/pt-br/dotnet/csharp/programming-guide/arrays/single-dimensional-arrays)
+- [Matrizes multidimensionais](https://learn.microsoft.com/pt-br/dotnet/csharp/programming-guide/arrays/multidimensional-arrays)
+- [Práticas recomendadas para lançar exceções](https://docs.microsoft.com/pt-br/dotnet/standard/exceptions/best-practices-for-exceptions)
