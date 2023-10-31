@@ -360,3 +360,12 @@ public class GenericList<T>
 ```
 
 Nesta listagem temos uma estrutura de dados em nó, a representação do tipo genérico está ao criar a classe `GenericsList<T>` por conversão é usada a letra T, mas podemos usar qualquer outra letra. Sendo possível criar uma lista do tipo `int`, `string`, ou de qualquer tipo desejado.
+
+## Tipos anônimos
+
+São propriedades sem identidade, são uma forma de agrupar propriedades imutáveis associados a uma variável de tipo implícito.
+
+```
+var myAnonymousType = new { Amount = 42, Message = "Olá",  Value = 3.95};
+```
+Devem conter uma ou mais propriedades somente leitura e não podem conter métodos ou eventos.
