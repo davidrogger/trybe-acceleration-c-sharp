@@ -311,3 +311,52 @@ Para manipular objetos de momento de tempo:
     | "y" | June, 2008 |
 
     É possível customizar um formato para `.ToString()`, [documentação](https://learn.microsoft.com/pt-br/dotnet/api/system.datetime.tostring?view=net-6.0#system-datetime-tostring(system-string))
+
+# Tipos Avançados
+
+## Classes e Funções genéricas
+
+Generics é uma forma de flexibilizar a definição de um tipo, ao criar uma classe em que precisamos criar uma lista de algo, podemos definir que ao instanciar é feita a declaração do tipo que será armazenado na lista:
+
+```
+public class GenericList<T>
+{
+    private class Node
+    {
+        public T Value;
+        public Node? Next;
+
+        public Node(T t)
+        {
+            Value = t;
+            Next = null;
+        }
+    }
+
+    public Node Head;
+
+    public GenericList()
+    {
+        Head = null;
+    }
+
+    public void Add(T input) 
+    {
+        if (Head == null)
+        {
+            Head = new Node(input);
+            Console.WriteLine("Nó Head criado!");
+        }
+        else
+        {
+            //Encontra onde inserir o próximo nó na lista.
+            Node lastNode = Head;
+            while(lastNode.Next != null)   lastNode = lastNode.Next;
+
+            lastNode.Next = new Node(input);                        
+        }
+    }
+}
+```
+
+Nesta listagem temos uma estrutura de dados em nó, a representação do tipo genérico está ao criar a classe `GenericsList<T>` por conversão é usada a letra T, mas podemos usar qualquer outra letra. Sendo possível criar uma lista do tipo `int`, `string`, ou de qualquer tipo desejado.
