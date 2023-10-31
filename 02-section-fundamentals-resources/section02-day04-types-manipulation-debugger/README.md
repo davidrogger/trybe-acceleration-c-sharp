@@ -369,3 +369,10 @@ São propriedades sem identidade, são uma forma de agrupar propriedades imutáv
 var myAnonymousType = new { Amount = 42, Message = "Olá",  Value = 3.95};
 ```
 Devem conter uma ou mais propriedades somente leitura e não podem conter métodos ou eventos.
+
+# Recursos Adicionais
+
+- [Classe String](https://learn.microsoft.com/pt-br/dotnet/api/system.string?view=net-8.0)
+- [Construtores da Classe Datetime](https://learn.microsoft.com/pt-br/dotnet/api/system.datetime.-ctor?view=net-6.0)
+- [Classes e métodos genéricos](https://learn.microsoft.com/pt-br/dotnet/csharp/fundamentals/types/generics)
+- [Depurar um aplicativo de console no Visual Studio Code](https://learn.microsoft.com/pt-br/dotnet/core/tutorials/debugging-with-visual-studio-code?pivots=dotnet-6-0)
