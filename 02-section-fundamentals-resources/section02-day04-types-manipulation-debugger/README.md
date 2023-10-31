@@ -88,3 +88,13 @@ Para garantir a interpretação do compilador vale ressaltar que quando atribuí
 char singleChar = 'A'; // 'A' is a char
 string str = "Hello"; // "Hello" is a string
 ```
+
+## Interpolação de Strings
+
+É uma forma de inserir um valor de uma variável em uma variável com maior legibilidade, facilitando na manutenção.
+
+```
+string name = getNameById(123);
+Console.WriteLine($"Welcome {name}!");
+```
+
