@@ -142,3 +142,30 @@ class Person
 }
 ```
 
+## Usando métodos para instanciar classes
+
+Em C# é possível usar uma ferramentada chamada object initializer, que permite que seja instanciado um objeto com a atribuição de valores de suas propriedades sem invocar diretamente o construtor.
+Caso seja necessário estabelecer uma classe que representa um objeto simples.
+
+```
+new <ClassName>
+{
+    Property = someValue,
+    Property2 = anotherValue
+    ...
+};
+```
+
+```
+class Cake
+{
+    public string Size { get; set; }
+    public string Flavour { get; set; }
+}
+
+Cake chocolateCake = new Cake
+    {
+      Size = "10",
+      Flavour = "Chocolate"
+    };
+```
