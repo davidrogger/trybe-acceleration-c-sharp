@@ -13,11 +13,11 @@
 - [X] Dia 02: _Variáveis com Tipo, Condicionais e Loops_
 - [X] Dia 03: _Arrays, Funções e Exceções_
 - [X] Dia 04: _Manipulação de Tipos e Debugger_
-- [ ] Dia 05: _Projeto - TryBank_
+- [X] Dia 05: _Projeto - TryBank_
 
 ##### Seção 03 - Orientação a Objetos com C# ⏳
 
-- [ ] Dia 01: _Abstração e métodos estáticos_
+- [X] Dia 01: _Abstração e métodos estáticos_
 - [ ] Dia 02: _Composição e Herança_
 - [ ] Dia 03: _Projeto Aluguel de Carros_
 
