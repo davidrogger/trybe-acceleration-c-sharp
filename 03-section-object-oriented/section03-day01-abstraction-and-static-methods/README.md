@@ -169,3 +169,28 @@ Cake chocolateCake = new Cake
       Flavour = "Chocolate"
     };
 ```
+
+## Modificador `static`
+
+São métodos independentes da instancia, para acessar este método deve-se usar a própria classe.Sendo associados à classe onde são declarados com um todo.
+
+```
+public static class Sample
+{
+  public static string[] exercises = { "getter", "setter", "static" };
+}
+```
+
+Ao tentar instanciar uma classe static, ocorre um erro de compilação.
+
+Para acessar os valores de exercises é usada a propria classe.
+```
+Sample.exercises
+```
+
+## Recursos adicionais
+
+- [Programação orientada a objeto (C#)](https://learn.microsoft.com/pt-br/dotnet/csharp/fundamentals/tutorials/oop)
+- [Introdução às classes](https://learn.microsoft.com/pt-br/dotnet/csharp/fundamentals/types/classes)
+- [get e set(Referência de C#)](https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/keywords/get)
+- [Classes static e membros de classes static](https://learn.microsoft.com/pt-br/dotnet/csharp/programming-guide/classes-and-structs/static-classes-and-static-class-members)
