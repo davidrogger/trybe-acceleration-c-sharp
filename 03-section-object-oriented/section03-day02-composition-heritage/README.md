@@ -290,3 +290,79 @@ using MyNamespace;
 
 var myCar = new Car();
 ```
+
+## Structs
+
+São estruturas de dados em C# onde é possível criar objetos de forma parecida com class, porém simplificada.
+
+Em C#, temos duas categorias de tipos de variáveis, os Tipos de valor e os Tipos de referência.
+
+- valor: variáveis que possuem seu valor armazenado diretamente, a variável em si é aquele valor que ela representa e não uma referencia para o valor em outra parte da memória. Sendo eles: `int`, `float`, `double`, `char`, `bool`.
+- referencia: armazenam uma referência ao seu valor e não o valor propriamente dito, e isso tem consequências importantes. Por exemplo, duas variáveis de tipo de referência podem se referenciar a um mesmo valor armazenado na memória. Sendo eles: `classes`, `interfaces`, `string`, `action`.
+
+A sintaxe de structs é bem similar a de classe, usando a palavra reservada `struct`, seguida do nome da classe, e em seguida descreve o conteúdo da estrutura dentro de chaves `{}`.
+
+```
+struct Coordinate
+{
+    public double Latitude;
+    public double Longitude;
+}
+```
+Pode-se definir um construtor assim como em classes:
+
+```
+struct Coordinate
+{
+    public double Latitude;
+    public double Longitude;
+
+    public Coordinate(double latitude, double longitude)
+    {
+        Latitude = latitude;
+        Longitude = longitude;
+    }
+}
+```
+Também possuem modificadores de acesso, public, private e protected.
+
+E seu uso é igual ao de uma classe;
+```
+// someLocation irá inicializar com os valores de latitude e longitude fornecidos
+Coordinate someLocation = new Coordinate(-19.9222072, -43.9339879);
+
+// anotherLocation irá inicializar com os valores de latitude e longitude iguais a 0
+Coordinate anotherLocation = new Coordinate();
+```
+
+Mesmo não existindo um construtor explícito que não recebe nenhum parâmetro, é possível realizar a instanciação, justamente pelo fato de existirem. Isso é possível porque essa `struct` contém apenas propriedades que possuem um valor inicial padrão, no caso `double`, seu valor padrão é 0, anotherLocation será instanciado com Latitude e Longitude igual a 0.
+
+## Enum
+
+São estruturas de dados em C# que são utilizadas para melhorar a legibilidade do código construído. Podemos agrupar várias constantes nomeadas em um novo tipo, como se pertencesse a um mesmo grupo.
+
+```
+enum PaymentType
+{
+    // Credit tem valor 0
+    Credit = 0,
+
+    // Debit tem valor 1
+    Debit = 1
+}
+```
+
+```
+class Order
+{
+    public PaymentType PayType
+}
+```
+
+```
+Order myOrder = new Order();
+
+myOrder.PayType = PaymentType.Credit;
+```
+
+Não é necessário definir os valores das constantes de um Enum. Caso não seja definido, os valores serão inteiros, começando do 0 seguindo de forma crescente.
