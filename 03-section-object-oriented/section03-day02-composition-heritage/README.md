@@ -366,3 +366,11 @@ myOrder.PayType = PaymentType.Credit;
 ```
 
 Não é necessário definir os valores das constantes de um Enum. Caso não seja definido, os valores serão inteiros, começando do 0 seguindo de forma crescente.
+
+## Recursos adicionais
+
+- [Interfaces](https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/language-specification/interfaces)
+- [Modificador Protected](https://docs.microsoft.com/pt-br/dotnet/csharp/language-reference/keywords/protected)
+- [Modificador Public](https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/keywords/public)
+- [Enums](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/enums)
+- [Struct](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/structs)
