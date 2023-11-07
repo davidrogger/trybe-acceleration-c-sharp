@@ -230,3 +230,36 @@ public class AudioPlayer
 
 Classes estáticas não são as únicas classes que não são instanciáveis, temos também as classes abstratas, que são aquelas que implementam todos os seus métodos e que não são implementadas diretamente, sendo ponto de partida para classes derivadas que, por sua vez, serão instanciadas.
 Herdando uma classe abstrata, não é herdado apenas as funcionalidades de métodos já implementados, mas também por meio dos métodos abstratos, diretrizes de implementação, que definem apenas o formato das mensagens que a classe herdeira deve ser capaz de receber.
+
+# Modificadores de acesso C#
+
+- public
+- protected
+- private
+
+## Public
+
+Qualquer parte do código pode referencias esse item se estiver no seu escopo. Atribuir sempre atributos e métodos como públicos não é uma boa prática no mercado, pois permite que erros das pessoas desenvolvedora causem mal funcionamento do sistema ou até traga riscos à segurança dos dados.
+
+```
+public class MusicConverter
+{
+    public static void ToMp3()
+    {
+        //...
+    }
+    public static void ToWav()
+    {
+        //...
+    }
+    // ...
+}
+```
+
+## Protected
+
+Permite o acesso e referência para itens na mesma classe ou em classes herdeiras.
+
+## Private
+
+É o modificador padrão de atributos membros em C#, ele permite o acesso para itens apenas na mesma classe.
