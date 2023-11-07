@@ -263,3 +263,30 @@ Permite o acesso e referência para itens na mesma classe ou em classes herdeira
 ## Private
 
 É o modificador padrão de atributos membros em C#, ele permite o acesso para itens apenas na mesma classe.
+
+# Organizando TIpos em C#
+
+Namespace é uma forma de organizar tipos definidos, como classes, structs, interfaces e enums em um mesmo conjunto.
+Ao organizar tios em um mesmo conjunto, podemos definir domínios específicos em uma aplicação, facilitando o processo de encontrar tipos ou utilizá-los em diferentes artes do sistema. Sendo uma forma muito usada em C# até mesmo pelo framework dotnet.
+
+```
+namespace MyNamespace
+{
+    public class Car
+    {
+        // Código da minha classe Car
+    }
+}
+```
+
+Foi organizado a classe `Car` dentro do namespace `MyNamespace`, ficando acessível como `MyNamespace.Car` ou utilizando a keyword using.
+
+```
+var myCar = new MyNamespace.Car();
+```
+
+```
+using MyNamespace;
+
+var myCar = new Car();
+```
