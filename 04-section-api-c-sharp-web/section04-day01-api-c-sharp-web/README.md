@@ -254,3 +254,60 @@ O `ASP.NET` suporta diversos tipos de respostas derivadas de `ActionResult`:
 Todos esses tipos são retornados dinamicamente pelos métodos do `ControllerBase`.\
 O método `StatusCode()` retorna um objeto do tipo ObjectResult, que é um subtipo de `ActionResult`. Esse objeto, ao ser devolvido ao browser, indicará uma resposta do tipo "Created"(201), que terá como corpo o objeto criado.
 
+
+# Operações de atualização (PUT)
+
+Embora semanticamente sirva também para criar elementos, ele funciona de maneira diferente do POST, pois, em rega, o Id do objeto criado será passado pela pessoa usuária, e não gerado pela sistema.\
+
+Por conta da polivalência do PUT, é possível utilizar requisições desse tipo para fazer operações de upsert(update + insert), que é quando enviamos um objeto e, caso ele existe, fazemos um update, caso não, criamos sob o Id em questão.
+
+Também é possível fazer atualizações corretas semanticamente utilizando o verbo HTTP `PATCH`. Todavia, o uso dessa palavra é menos comum no contexto do APS.NET por conta do PUT que recebem o objeto completo e o PATCH pode receber apenas os campos a serem atualizados. Como o C# trabalha de forma orientada a objetos, é bem simples utilizar um objeto de request que deve ser totalmente preenchido do que tentar pegar os campos do corpo da requisição dinamicamente. Outra vantagem usando PUT é atualizar objetos passando todos os dados novamente é que as requisições feitas com PUT são idempotentes, ou seja, várias requisições idênticas terão sempre o mesmo resultado, pois todos os campos são garantidamente os mesmos, o que não ocorre com o PATCH.
+
+```
+[ApiController]
+[Route("clients")]
+public class ClientController : ControllerBase
+{
+  private static List<Client> _client = new();
+  private static int _nextId = 1;
+
+  [HttpPost]
+  public ActionResult Create(ClientRequest request)
+  {...}
+
+  [HttpPut("{id}")]
+  public ActionResult Update(int clientId, ClientRequest request)
+  {
+    var client = _client.FirstOrDefault(c => c.Id == clientId);
+
+    if (client == null) return NotFound("Client not found");
+
+    var clientUpdated = request.UpdateClient(client);
+    return Ok(clientUpdated);
+  }
+}
+```
+
+O Id é passado não no corpo da aplicação e sim em forma de query parameter, na própria URL, de forma parecida com GetById(). Realizando a atualização do objeto de id 1, por exemplo: `https://<endereço>/clients/1`
+
+```
+public class ClientRequest
+{
+  public string? Name { get; set; }
+  public decimal AccountBalance { get; set; }
+
+  public Client CreateClient(int id)
+  {...}
+
+  public Client UpdateClient(Client client)
+  {
+    client.Name = Name;
+    client.AccountBalance = AccountBalance;
+    cient.UpdatedAt = DateTime.Now;
+    return client;
+  }
+}
+```
+Não é necessário trabalhar com o Id diretamente, como seria feito no método CreateClient(), pois o objeto passado como parâmetro já tem um Id.
+
+É usado os métodos `Ok()` e `NotFound()`, definidos em ControllerBase, que as respostas são derivadas de `ActionResult`, que são os métodos mais comuns para usar em requisições, retornando, uma resposta 200("OK") ou 404("Not Found").
