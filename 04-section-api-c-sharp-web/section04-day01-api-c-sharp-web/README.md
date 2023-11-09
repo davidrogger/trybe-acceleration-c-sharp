@@ -165,3 +165,92 @@ No exemplo é usado o token replacement `"[controller]"`. O atributo `Route()` p
 ```
 
 - O Método que irá ser executado quando realizada uma chamada HTTP para a rota do controller. É possível definir mais de um método dentro do mesmo controller que responde ao mesmo tipo de requisição, mas para isso é necessário usar o atributo `Route()` no controller, utilizá-lo novamente no método novo, o que cria uma sub-rota para esse método dentro do controller. Sendo possível definir um novo método `public string GetHelloTrybe() => "Hello Trybe!";` com os atributos `[HttpGet]` e `Route("2")`
+
+# Operações de criação (POST)
+
+Para operações de criação, podemos usar o verbo `POST` e o `PUT`, sendo mais comum utilizar o primeiro.
+
+Criando novo controller que crie novos objetos em um arquivo chamado `Client.cs`:
+
+```
+namespace TestApi.Core
+{
+  public class Client
+  {
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public decimal AccountBalance { get; set; }
+    public DateTime CreatedAt { get; set }
+    public DateTime UpdatedAt { get; set; }
+  }
+}
+```
+
+Como não é será o cliente que determinará o id ou data de criação e sim o servidor, será criada uma classe para isso em um arquivo chamado `ClientRequest.cs`;
+
+```
+namespace TestApi.Core
+{
+  public class ClientRequest
+  {
+    public string? Name { get; set; }
+    public decimal AccountBalance { get; set; }
+
+    public Client CreateClient(int id)
+    {
+      return new Client
+      {
+        Id = id,
+        Name = Name
+        AccountBalance = AccountBalance,
+        CreatedAt = DateTime.Now,
+        UpdatedAt = DateTime.Now,
+      }
+    }
+  }
+}
+```
+
+Agora a criação do controller com um método `POST` em um arquivo `ClientController.cs` no diretório de Controllers.
+
+```
+using Microsoft.AspNetCore.Mvc;
+using TestApi.Core;
+
+namespace TestApi.Controllers
+{
+  [ApiController]
+  [Route("clients")]
+  public class ClientController : ControllerBase
+  {
+    private static List<Client> _client = new();
+    private static int _nextId = 1;
+
+    [HttpPost]
+    public ActionResult Create(ClientRequest request)
+    {
+      var client = request.CreateClient(_nextId++)
+      _clients.Add(client);
+
+      return StatusCode(201, client);
+    }
+  }
+}
+```
+
+ControllerBase é uma classe do pacote da Microsoft.AspNetCore.Mvc que contém os métodos usados para retornar as respostas HTTP corretas.\
+A rota base não usa token replacement, foi definido como clients para acessar.
+Tendo também dois campos estáticos;
+- `_clients`: para guardar os clients enviados pelo controller;
+- `_nextId`: para controlar a atribuição de Ids únicos da aplicação, evitando Ids repetidos.
+
+O `ASP.NET` suporta diversos tipos de respostas derivadas de `ActionResult`:
+
+- `ViewResult`: uma resposta em HTML
+- `EmptyResult`: uma resposta vazia
+- `JsonResult`: uma resposta em formato json
+- `ContentResult`: uma resposta em formato de texto simples
+
+Todos esses tipos são retornados dinamicamente pelos métodos do `ControllerBase`.\
+O método `StatusCode()` retorna um objeto do tipo ObjectResult, que é um subtipo de `ActionResult`. Esse objeto, ao ser devolvido ao browser, indicará uma resposta do tipo "Created"(201), que terá como corpo o objeto criado.
+
