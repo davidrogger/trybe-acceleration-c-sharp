@@ -96,4 +96,72 @@ dotnet dev-certs https --trust
 
 Agora para rodar basta usar o `dotnet run`, acessando o link apresentando após o build, nenhum página é carregada pois é necessário acessar o endpoint que possui o get criado: `https://127.0.0.1:7209/weatherforecast`
 
+# Operações de leitura (GET)
 
+```
+using Microsoft.AspNetCore.Mvc;
+
+namespace TestApi.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class HelloWorldController : Controller
+{
+    [HttpGet]
+    public string Get() => "Hello world!";
+}
+```
+
+#
+
+```
+  using Microsoft.AspNetCore.Mvc;
+```
+
+Mesmo não construindo um projeto MVC, os atributos ApiController, Route() e HttpGet, que são utilizados para fazer com que a classe funcione como um controller, são parte do namespace Microsoft.AspNetCore.Mvc
+
+#
+
+```
+  [ApiController]
+```
+
+- ApiController tem como função indicar para o compilador que uma classe tem como função servir respostas às requisições `HTTP` feitas para a API.
+
+A Utilização desse atributo permite que a aplicação identifique, de forma inteligente, se as informações enviadas para a api vêm do body, do header ou de queries na própria url.
+
+#
+
+```
+  [Route("[controller]")]
+```
+
+- O Route tem como função indicar qual a rota pela qual o controller em questão é acessado. Se fosse usado uma rota `Route("ServiceOne")`, a requisição seria com a URL:`https://<endereço>/ServiceOne`
+
+No exemplo é usado o token replacement `"[controller]"`. O atributo `Route()` permite utilizar essa funcionalidade para definir automaticamente os valores entre colchetes `[`, com base no nome da classe que define o controller, ou seja, o controller que foi definido, poderá ser acessado pela rota:`https://<endereço>/HelloWord`.
+
+#
+
+```
+  public class HelloWorldController
+  {
+  }
+```
+
+- É a classe que utilizamos para definir o controller. Por convenção, sempre é definida a classe com o padrão `<NomeDoController>Controller`, o que permite usar o `Route()` com o token replacement.
+
+#
+
+```
+  [HttpGet]
+```
+
+É um atributo que define os tipos de requisição aos quais os métodos poderão responder, baseado nos verbos HTTP. Existem atributos para todos os tipos de verbos.
+
+#
+
+```
+  public string Get() => "Hello world!";
+```
+
+- O Método que irá ser executado quando realizada uma chamada HTTP para a rota do controller. É possível definir mais de um método dentro do mesmo controller que responde ao mesmo tipo de requisição, mas para isso é necessário usar o atributo `Route()` no controller, utilizá-lo novamente no método novo, o que cria uma sub-rota para esse método dentro do controller. Sendo possível definir um novo método `public string GetHelloTrybe() => "Hello Trybe!";` com os atributos `[HttpGet]` e `Route("2")`
