@@ -81,4 +81,19 @@ Fluxo:
 3. O `Controller` escolhe a visualização a ser exibida e a alimenta com informações vindas da `Model`, quando necessário;
 4. O `View` fica responsável pela interface exibida para a pessoa, renderizando a página final, com base nos dados vindos do `model`.
 
+# Criando uma webapi
+
+Primeiro iniciando com dotnet
+```
+dotnet new webapi -o MyWebApi
+```
+
+É criada uma API base WeatherForecast, é possível rodar e testar a primeira requisição usando essa api de base.\
+Primeiro é necessário adicionar o uso do certificado de desenvolvimento .NET aos certificados confiáveis;
+```
+dotnet dev-certs https --trust
+```
+
+Agora para rodar basta usar o `dotnet run`, acessando o link apresentando após o build, nenhum página é carregada pois é necessário acessar o endpoint que possui o get criado: `https://127.0.0.1:7209/weatherforecast`
+
 
