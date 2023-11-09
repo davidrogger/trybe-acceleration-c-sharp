@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "mjOSBPS1RjHpnRz17U2NXa9mFmJeEIrkBxPadPEc8kY=",
+  "Source": "LabWebAPI",
+  "BasePath": "_content/LabWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
