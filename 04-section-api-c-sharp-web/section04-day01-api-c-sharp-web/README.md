@@ -311,3 +311,37 @@ public class ClientRequest
 Não é necessário trabalhar com o Id diretamente, como seria feito no método CreateClient(), pois o objeto passado como parâmetro já tem um Id.
 
 É usado os métodos `Ok()` e `NotFound()`, definidos em ControllerBase, que as respostas são derivadas de `ActionResult`, que são os métodos mais comuns para usar em requisições, retornando, uma resposta 200("OK") ou 404("Not Found").
+
+# Operações de remoção (DELETE)
+
+Não é recomendado deletar um registro de uma base de dados, para que se possa manter um histórico auditável do funcionamento da aplicação, o ato de deletar registros pode ser necessário.
+
+```
+[ApiController]
+[Route("clients")]
+public class ClientController : ControllerBase
+{
+  private static List<Client> _clients = new();
+  private static int _nextId = 1;
+
+  [HttpPost]
+  public ActionResult Create(ClientRequest request)
+  {...}
+
+  [HttpPut("{id}")]
+  public ActionResult Update(int id, Client Request reques)
+  {...}
+
+  [HttpDelete("{id}")]
+  public ActionResult Delete(int clientId)
+  {
+    var removed = _client.RemoveAll(c => c.id == clientId);
+
+    if (removed == 0) return NotFound("Client not found");
+
+    return NoContent();
+  }
+}
+```
+
+Assim como no PUT, é passado o ID via endpoint, normalmente não é necessário retornar um conteúdo usando o método `NoContent()`.
