@@ -18,12 +18,12 @@
 ##### Seção 03 - Orientação a Objetos com C# ⏳
 
 - [X] Dia 01: _Abstração e métodos estáticos_
-- [ ] Dia 02: _Composição e Herança_
-- [ ] Dia 03: _Projeto Aluguel de Carros_
+- [X] Dia 02: _Composição e Herança_
+- [X] Dia 03: _Projeto Aluguel de Carros_
 
 ##### Seção 04 - API C# Web ⏳
 
-- [ ] Dia 01: _ASP.NET - C# na Web_
+- [X] Dia 01: _ASP.NET - C# na Web_
 - [ ] Dia 02: _Criando APIs com ASP.NET_
 - [ ] Dia 03: _Boas práticas de APIs_
 - [ ] Dia 04: _Projeto - API de Receitas_
