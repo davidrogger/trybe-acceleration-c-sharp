@@ -411,3 +411,100 @@ No arquivo `csproj` do projeto de teste:
 </ItemGroup>
 ```
 
+# Testes de Integração
+
+Criando um teste inicial usando a rota clients:
+
+```
+[HttpGet]
+public ActionResult List()
+{
+  return StatusCode(200, _clients)
+}
+```
+
+Os testes de integração de uma `WebApi` em C# são realizados por meio de uma construção de API completa que será armazenada em um atributo da classe de testes. Para realizar esse processo, é necessário configurar o projeto de testes para aceitar bibliotecas do `ASP.NET` que trabalham com testes.
+
+Para isso, dentro do diretório `TestApi.Test`, execute os seguintes comandos:
+
+```
+dotnet add package Microsoft.AspNetCore.Mvc.Testing -- version 6.0.4
+```
+
+```
+dotnet add package Microsoft.AspNetCore.Hosting --version 2.2.7
+```
+
+Com as bibliotecas instaladas, é necessário modificar na API para que ela seja construída no projeto de Testes. Isso é feito criando a classe `Program`, olhando o arquivo `Program.cs` da API, nota-se que não há uma classe `Program` nem um método `Main`.\
+As APIs em C# são construídas através de um builder, uma classe do ASP.NET que permite a construção de uma série de classes. Como o builder consegue garantir a construção de toda a webapi tal como a referência de suas controllers, todos os códigos do builder podem ser escritos em sequência sem a necessidade de um ponto de inicialização (que seria o método `Main`). Esse comportamento ja acontece quando criado o primeiro HelloWorld onde não havia um Main.\
+Mas os testes precisam de uma classe para construção. Portanto, no final do arquivo `<NomeDoProjeto>/Program.cs`, deve-se adicionar um apontamento para que a classe `Program` seja visível:
+```
+public partial class Program {}
+```
+
+Pronto para iniciar os testes de integração, dentro do projeto de testes, exclua o arquivo UnitTest1.cs e cria um novo para integração no caso `IntegrationTest.cs`.
+
+Inicialmente definindo o `namespace` e importando as bibliotecas instaladas anteriormente, junto dos controllers do projeto.
+
+```
+namespace TestApi.Test
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
+using TestApi.Controllers;
+```
+
+Criando a classe que representa o teste:
+
+```
+public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
+{
+
+}
+```
+IClassFixture é responsável por trazer a webapi inteira construída dentro da classe de teste.\
+Dentro da classe IntegrationTest, será criado um atributo do tipo `HttpClient` chamado _clientTest. Esse atributo armazenará um cliente que fará requisições na webapi do projeto principal. O Client é o software responsável por trazer requisições web. Os navegadores web, extensões como thunderclient, programas como postman ou insomnia e bibliotecas de front-end como fetch ou axios são todos exemplo de clients. O HttpClient do C# também faz essa função.
+
+Dentro da classe, também será definido um construtor da classe para receber a `WebApplicationFactory` como uma injeção de dependência. Dentro do construtor, será criado um `client` da `WebApplicationFactory`.
+
+```
+public class IntegrationTest : IClassFixture<Fixture<WebApplicationFactory<Program>>
+{
+  public HttpClient _clientTest;
+
+  public IntegrationTest(WebApplicationFactory<Program> factory)
+  {
+    _clientTest = factory.CreateClient();
+  }
+}
+```
+
+Em uma classe de teste, todos os métodos representam um teste a ser realizado e o C# identifica isso automaticamente.\
+Todos os métodos precisam de `Data Annotations` que tem duas funções: identificar o teste e informar os parâmetros de entrada.
+
+```
+[Theory(DisplayName = "Testando a rota /GET Clients")]
+[InlineData("/clients")]
+public async Task TestGetClients(string url)
+{
+  // conteúdo do teste...
+}
+```
+
+A primeira notation se chama `Theory` e é responsável por dar um descritivo para o teste.\
+Segunda notation se chama InlineData e é responsável por dar os parâmetros de entrada para um método de teste. Imagine um teste que checa a funcionalidade de cálculo de um imposto. E é necessário realizar o teste com diversos valores diferentes para uma mesma chamada de método. Para isso, basta chamar o método várias vezes com diversos `InlineData`. O método de teste é chamado para cada `InlineData` informando mudando o valor dos parâmetros do método de testes.
+
+```
+[Theory(DisplayName = "Testando a rota /GET Clients")]
+[InlineData("/clients")]
+public async Task TestGetClients(string url)
+{
+  var response = await _clientTest.GetAsync(url);
+  Assert.Equal(System.Net.HttpStatusCode.Ok, response?.StatusCode);
+}
+```
+
+O método de teste, na primeira linha, usa o `client` inicializado no construtor para realizar uma chamada assíncrona no verbo `GET` com o método GetAsync() passando a rota a ser utilizada.\
+Após esperar o retorno da requisição, é realizada a verificação com o Assert, que verifica se o código de status da response é `response.StatusCode.Ok` que é garantido pelo `System.NET.HttpStatusCode.Ok`.\
+
+Para rodar o teste basta usar o comando `dotnet test`.
+
