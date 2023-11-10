@@ -345,3 +345,69 @@ public class ClientController : ControllerBase
 ```
 
 Assim como no PUT, é passado o ID via endpoint, normalmente não é necessário retornar um conteúdo usando o método `NoContent()`.
+
+# Testes
+
+Automatizam o processo de validação da construção e das reformas de uma software, garantindo que todos os requisitos de um projeto sejam atendidos e caso alguma alteração seja realizada, os testes garantem que não tenha inutilizado alguma funcionalidade. Sendo comum em um clico de deploy a realização de testes para qualquer correção ou adição de funcionalidades.
+
+## Testes de Unidade
+
+São a primeira fase de um fluxo de testes, garantem que a menor unidade de um software funciona de maneira isolada, são sempre executadas durante o desenvolvimento garantido que a lógica funciona em uma refatoração e por isso ajuda na detecção precoce de erros.
+
+## Testes de Integração
+
+Garantem o funcionamento de um grupo de camadas ou unidades de software que trabalham juntas. Verificando a comunicação, chamada e interação entre as funcionalidades.\
+Simulando muito bem os cenários de interação do usuário com a aplicação. Porém ele é mais complexo de se criar já que a configuração base deve ser simulada.
+
+## Teste de Aceitação
+
+São testes `End to end`, que visam identificar se a aplicação atende os requisitos e expectativas das pessoas usuários que irão usa-lo. Testa todas as camadas em conjunto.
+
+## Testes de Performance
+
+Visam estressar um ambiente de produção afim de medir o desempenho, a escalabilidade e capacidade de resposta de um software quando submetido a diferentes condições de carga.
+
+# Teste em C#
+
+Os teste em C# funcionam pro meio da tecnologia XUnit, é um projeto do .NET destinado apenas à realização de testes. em C# os testes são tratados como projetos aparte do projeto principal.\
+
+Por ter um projeto exclusivo para testes faz com que os dois projetos tenham que ser conectados. Isso ocorre atrás de um arquivo chamado `Solution`. Que tem a responsabilidade de conectar diversos projetos em C#. Solutions podem conectar quaisquer tipos de projetos, um software do tipo console já funcional que possui um série de classes com regras de negócio, caso seja criado um WebAPI para este mesmo fim, pode-se reaproveitar as classes com as regras do console apenas criando uma solution que conecte os dois.
+
+# Criando um projeto de teste
+
+Comando deve ser executado fora do diretório do projeto desejado:
+```
+dotnet new xunit -o <NomeDoProjeto>
+```
+Criando a conexão usando Solution:
+```
+dotnet new sln --name <NomeDoProjeto>Solution
+```
+
+Aparecerá um arquivo chamado <NomeDoProjeto>Solution. Este arquivo de solução se inicia vazio e então, deve-se adicionar os projetos a ele. Os projetos em C# são identificados por um arquivo com extensão `.csproj`, o projeto C# sempre terá o arquivo `csproj` que contém as definições do projeto. O `Solution` enxera os dois projetos, deve-se adicionar os caminhos dos `csproj` com os comandos:
+
+```
+dotnet sln add <NomeDoProjeto>/<NomeDoProjeto>.csproj
+```
+
+```
+dotnet sln add <NomeDoProjetoDeTeste>/<NomeDoProjetoDeTeste>.csproj
+```
+
+Para finalizar, deve-se referenciar um projeto no outro. Isso é feito criando referências no arquivo `csproj` de ambos os projetos.
+
+No arquivo csproj do projeto adicione a notação:
+
+```
+<ItemGroup>
+    <InternalsVisibleTo Include="<NomeDoProjetoTeste>" />
+</ItemGroup>
+```
+
+No arquivo `csproj` do projeto de teste:
+```
+<ItemGroup>
+    <InternalsVisibleTo Include="..\<NomeDoProjeto>\<NomeDoProjeto>.csproj" />
+</ItemGroup>
+```
+
