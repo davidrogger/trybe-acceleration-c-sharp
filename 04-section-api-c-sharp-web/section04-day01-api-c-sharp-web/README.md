@@ -508,3 +508,9 @@ Após esperar o retorno da requisição, é realizada a verificação com o Asse
 
 Para rodar o teste basta usar o comando `dotnet test`.
 
+# Recursos Adicionais
+
+- [Documentação do ASP.NET](https://learn.microsoft.com/pt-br/aspnet/core/?view=aspnetcore-7.0)
+- [Tutorial: introdução ao ASP.NET Core](https://learn.microsoft.com/pt-br/aspnet/core/getting-started/?view=aspnetcore-7.0&tabs=macos)
+- [HttpMethods Classe](https://learn.microsoft.com/pt-br/dotnet/api/microsoft.aspnetcore.http.httpmethods?view=aspnetcore-7.0)
+- [Microsoft.AspNetCore.Mvc Namespace](https://learn.microsoft.com/pt-br/dotnet/api/microsoft.aspnetcore.mvc?view=aspnetcore-7.0)
