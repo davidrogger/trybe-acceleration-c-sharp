@@ -266,3 +266,154 @@ public class IntegrationTest(WebApplicationFactory<Program> factory)
 ```
 
 Primeiramente é instanciado o `mockService` que será um mock do `IContactService`. Depois criado um factory com o método `CreateClient()`, nesse processo é chamado o método `WithWebHostBuilder()`. Com esse método é possível acessar o builder que existe no Program.cs da API e modificar os serviços. Para remover os serviços, primeiro é procurado o mesmo do tipo `IContactService` e armazenado na variável `descriptor`. Se o descriptor for preenchido, é removido o mesmo do builder.services. E por fim o `AddSingleton` igual no `Program.cs`, é adicionado o objeto mockado acessando ele com o `mockService.Object`.
+
+# Testando rota GET
+
+```
+[Theory(DisplayName = "Testando a rota /GET Person")]
+[InlineData("/person")]
+public async Task TestGetPerson(string url)
+{
+  ...
+}
+```
+- Theory annotation para descritivo do teste
+- InlineData annotation para dar um valor para o parâmetro de entrada do método que será a URI.
+
+Usando o padrão `Triple A` que é mais usado em testes de unidade seguir os 3 As: `Arrange`, `Act` e `Assert`.
+
+- `Arrange`: etapa de configuração de variáveis, mocks e ambientes para rodar um teste.
+- `Act`: etapa que é executado o teste desejado. seja um método ou camada.
+- `Assert`: etapa para conferir o resultado obtido no Act, de acordo com o esperado.
+
+Iniciando com Arrange:
+
+```
+[Theory(DisplayName = "Testando a rota /GET Person")]
+[InlineData("/person")]
+public async Task TestGetPerson(string url)
+{
+  Person[] personMoq = new Person[2];
+  personMoq[0] = new Person { PersonId = 1, PersonName = "Maria", PersonEmail = "maria@betrybe.com", PersonPhone = "5511999999999"};
+  personMoq[1] = new Person { PersonId = 2, PersonName = "João", PersonEmail = "joao@betrybe.com", PersonPhone = "5511988888888"};
+
+  mockService.Setup(service => service.getPersonList()).Returns(personMoq)
+
+}
+```
+
+Criado um Array, que vai acomodar 2 Person, que serão o resultado esperado no retorno da requisição mockado pelo mockService.Setup.\
+
+
+Agora o Act:
+
+```
+var response = await _client.GetAsync(url)
+```
+
+Essa response contém o status code e o corpo de resposta. Esse corpo será armazenado em uma variável do tipo string, para ser convertida de json para um objeto.
+
+```
+var responseString = await response.Content.ReadAsStringAsync();
+```
+
+Usando a biblioteca `Newtonsoft.Json` será convertido a string para um array de json e converter cada objeto json para um objeto do tipo `Person`, formando um array de `Person`:
+
+```
+ Person[] jsonResponse = JsonConvert.DeserializeObject<Person[]>(responseString)!;
+```
+
+Agora o Assert:
+
+```
+Assert.Equal(System.Net.HttpStatusCode.OK, response?.StatusCode);
+Assert.Equal(2, jsonResponse.Count()!);
+Assert.Equal(personMoq[0].PersonId, jsonResponse[0].PersonId);
+Assert.Equal(personMoq[0].PersonName, jsonResponse[0].PersonName);
+Assert.Equal(personMoq[0].PersonPhone, jsonResponse[0].PersonPhone);
+Assert.Equal(personMoq[0].PersonEmail, jsonResponse[0].PersonEmail);
+```
+
+- Conferindo se a resposta do status code é o esperado.
+- Tamanho do Array
+- ID da pessoa na posição 0 do array é igual o esperado
+- Nome da pessoa
+- Telefone
+- Email
+
+# Testando a rota POST
+
+A única diferença é o uso do corpo na hora de enviar a requisição:
+
+```
+[Theory(DisplayName = "Testando a rota /POST Person")]
+[InlineData("/person")]
+public async Task TestCreatePerson(string url)
+{
+  // Arrange
+  Person personMoq - new Person { PersonId = 3, PersonName = "Rebeca", PersonEmail = "rebeca@test.com", PersonPhone = "5511977777777" };
+  mockService.Setup(service => service.addPerson(It.isAny<Person>())).Returns(personMoq);
+}
+```
+
+O setup agora possui o método addPerson e como este método tem um atributo de entrada, que é o objeto do corpo da requisição, é necessário apontar ao Moq, o tipo correto esperado no corpo `Person`.
+
+O `Act`, será construído um objeto genérico que representa o corpo de requisição. Nesse caso, o objeto não é do tipo `Person` pois quando a requisição é realizada, o tipo de dados da entrada só é identificada no controller.
+
+```
+var request = new {
+  PersonName = "Rebeca",
+  PersonEmail = "rebeca@test.com",
+  PersonPhone = "5511977777777"
+}
+```
+
+Passando o objeto para requisição:
+
+```
+var response = await _clientTest.PostAsync(url, new StringContent(JsonConvert.SerializeObject(request), System.Text.Encoding.UTF8, "application/json"));
+```
+
+Agora há um segundo parâmetro, que é o `StringContent` para mandar um parâmetro do tipo string, Mas como é necessário um json, usamos o Newtonsoft.Json, para converter para um json usando um encoding UTF8 indicando que a requisição é uma `application/json`.
+
+```
+[Theory(DisplayName = "Testando a rota /POST Person")]
+[InlineData("/person")]
+public async Task TestCreatePerson(string url)
+{
+    // Arrange
+
+    Person personMoq = new Person { PersonId = 3, PersonName = "Rebeca", PersonEmail = "rebeca@betrybe.com", PersonPhone = "5511977777777"};
+    mockService.Setup(s => s.addPerson(It.IsAny<Person>())).Returns(personMoq);
+
+    // Act
+
+    var inputObj = new {
+        PersonName = "Rebeca",
+        PersonEmail = "rebeca@betrybe.com",
+        PersonPhone = "5511977777777"
+    };
+    var response = await _clientTest.PostAsync(url, new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
+    var responseString = await response.Content.ReadAsStringAsync();
+    Person jsonResponse = JsonConvert.DeserializeObject<Person>(responseString)!;
+}
+```
+
+Agora o Assert:
+
+```
+ // Assert
+
+    Assert.Equal(System.Net.HttpStatusCode.Created, response?.StatusCode);
+    Assert.Equal(personMoq.PersonId, jsonResponse.PersonId);
+    Assert.Equal(personMoq.PersonName, jsonResponse.PersonName);
+    Assert.Equal(personMoq.PersonPhone, jsonResponse.PersonPhone);
+    Assert.Equal(personMoq.PersonEmail, jsonResponse.PersonEmail);
+```
+
+- StatusCode
+- ID da person
+- Nome da person
+- Telefone
+- Email
+
