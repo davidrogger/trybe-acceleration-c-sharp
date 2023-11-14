@@ -170,3 +170,99 @@ public async Task<ActionResult<AdvancedAccountDTO>> GetById(Guid id)
   var allTransactions = await _transactionService.GetTransactionAsync();
 }
 ```
+
+# Revisando a inicialização de um projeto de Teste
+
+Projeto [ContactList](https://github.com/tryber/csharp-codes/tree/S3-D2-L5-EX-1)
+
+```
+dotnet new xunit -o ContactList.Test  
+
+dotnet new sln --name ContactList 
+
+dotnet sln add ContactList/ContactList.csproj   
+
+dotnet sln add ContactList.Test/ContactList.Test.csproj    
+```
+
+Criando referência de um projeto para o outro de testes no arquivo `ContactList.csproj`:
+
+```
+  <ItemGroup>
+      <InternalsVisibleTo Include="ContactList.Test" />
+  </ItemGroup>
+```
+
+E no projeto de teste:
+
+```
+ <ItemGroup>
+    <ProjectReference Include="..\ContactList\ContactList.csproj" />
+  </ItemGroup>
+```
+
+Adicionando dependências para realizar os testes dentro da pasta do projeto de teste:
+
+```
+dotnet add package Microsoft.AspNetCore.Mvc.Testing --version 6.0.4
+
+dotnet add package Microsoft.AspNetCore.Hosting --version 2.2.7   
+
+dotnet add package Newtonsoft.Json --version 13.0.3
+
+dotnet add package Moq --version 4.17.2
+```
+
+## Criando a classe de testes
+
+Deletando o arquivo padrão criado ao iniciar o projeto de testes `UnitTest1.cs`, criando arquivo `IntegrationTest.cs`.\
+Agora importando as bibliotecas:
+
+```
+namespace ContactList.Test;
+
+using Moq;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection;
+
+using ContactList.Models;
+using ContactList.Services;
+using ContactList.Controllers;
+```
+
+Criando a classe usando o WebApplicationFactory:
+```
+public class IntegrationTest: IClassFixture<WebApplicationFactory<Program>>
+{
+    public HttpClient _clientTest;
+    public Mock<IContactService> mockService;
+
+    public IntegrationTest(WebApplicationFactory<Program> factory)
+    {
+    }
+}
+```
+
+Criando o código dentro do construtor. Será necessário preparar o mock da camada service, que é a camada que possui a variável que armazena os dados. Como ele é adicionado à API por injeção de dependência com o método AddSingleto é necessário na hora de construir o HttpClient no construtor, acessar os serviços do builder, procurar a classe da camada service e substitui-la pelo service mock:
+
+```
+public class IntegrationTest(WebApplicationFactory<Program> factory)
+{
+  mockService = new Mock<IContactService>();
+
+  _clientTest = factory.WithWebHostBuilder(builder => {
+    builder.ConfigureServices(services => {
+      var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(IContactService));
+      if (descriptor != null)
+      {
+        services.Remove(descriptor);
+      }
+      services.AddSingleton(mockService.Object);
+    });
+  }).CreateClient();
+}
+```
+
+Primeiramente é instanciado o `mockService` que será um mock do `IContactService`. Depois criado um factory com o método `CreateClient()`, nesse processo é chamado o método `WithWebHostBuilder()`. Com esse método é possível acessar o builder que existe no Program.cs da API e modificar os serviços. Para remover os serviços, primeiro é procurado o mesmo do tipo `IContactService` e armazenado na variável `descriptor`. Se o descriptor for preenchido, é removido o mesmo do builder.services. E por fim o `AddSingleton` igual no `Program.cs`, é adicionado o objeto mockado acessando ele com o `mockService.Object`.
