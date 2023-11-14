@@ -24,7 +24,7 @@
 ##### Seção 04 - API C# Web ⏳
 
 - [X] Dia 01: _ASP.NET - C# na Web_
-- [ ] Dia 02: _Criando APIs com ASP.NET_
+- [X] Dia 02: _Criando APIs com ASP.NET_
 - [ ] Dia 03: _Boas práticas de APIs_
 - [ ] Dia 04: _Projeto - API de Receitas_
 
