@@ -417,3 +417,35 @@ Agora o Assert:
 - Telefone
 - Email
 
+# Docker
+
+É uma plataforma open-source que auxilia, principalmente, no build de uma aplicação. Foi desenvolvido em Golang e gerencia containers Linux para empacotar essas aplicações ou ambientes e permitir o "transporte" para diferentes máquinas. Com motor próprio, o Docker Engine aproveita a infraestrutura Kernel do Sistema Operacional e se utiliza de suas libs e binários para executar os containers.\
+
+Sendo possível rodar aplicações da mesma forma em diferentes sistemas operacionais. Para isso, o Docker cria uma imagem conforme especificado em seu manual de instruções, o `Dockerfile`.\
+
+## Dockerfile
+
+É o arquivo de instruções na inicialização de um container.
+
+A estrutura de um Dockerfile envolve listar:
+
+- dependência que serão usadas pela aplicação;
+- softwares que serão instalados;
+- Sistema Operacional usado;
+- Pacotes copiados;
+- Linguagem que será executada;
+- Como conectar serviços e bases de dados (configurações de ambiente), etc...
+
+Instruções mais usadas:
+
+- `FROM`: define o ponto de partida (imagem base) indicando a imagem docker. *Instrução obrigatória.*
+- `LABEL`: aqui é possível definir algumas informações para melhor organização da imagem.
+- `ENV`: variáveis de ambiente, que serão usadas dentro do container.
+- `RUN`: aqui irão todos os comandos que deseja rodar assim que iniciar a buildar sua imagem.
+- `WORKDIR`: aponta onde serão executados os comandos, sendo apenas um path(caminho), define o diretório padrão de execução.
+- `VOLUME`: possibilita o acesso de um diretório da sua máquina real. Esse diretório é compartilhado, todo arquivo criado nessa pasta será acessível pelo caminho `/var/lib/docker/volumes`.
+- `USER`: define qual a pessoa usuário que executará os comandos dentro da imagem. O padrão é root
+- `ADD` ou `COPY`: adiciona ou copia arquivos e diretórios de sua máquina local para dentro da imagem.
+- `EXPOSE`: expõe uma porta para ser acessada publicamente, como a porta 80.
+- `CMD`: executa um comando assim que você invocar a imagem, ela sobrescreve outro CMD que esteja no Dockerfile.
+- `ENTRYPOINT`: parecido com o CMD, sem ser sobrescrito por alguma pré comando, normalmente você coloca um script para ser iniciado usando essa instrução.
