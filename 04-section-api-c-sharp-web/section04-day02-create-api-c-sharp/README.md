@@ -449,3 +449,56 @@ Instruções mais usadas:
 - `EXPOSE`: expõe uma porta para ser acessada publicamente, como a porta 80.
 - `CMD`: executa um comando assim que você invocar a imagem, ela sobrescreve outro CMD que esteja no Dockerfile.
 - `ENTRYPOINT`: parecido com o CMD, sem ser sobrescrito por alguma pré comando, normalmente você coloca um script para ser iniciado usando essa instrução.
+
+# REST
+
+Representational State Transfer, é um modelo de API dentro de determinados padrões, garantido melhor comunicação entre o sistema, com semântica e padronização para os verbos HTTP (GET, POST, PUT, DELETE, PATCH...), melhor escrita de endpoints e o uso padronizado dos status code HTTP:
+
+Respostas:\
+- Informação 100~199
+- Sucesso 200~299
+- Redirecionamento 300~399
+- Erros do cliente 400~499
+- Erros do servidor 500~599
+
+REST padroniza como deve se escrever os endpoints. Seguir os padrões é importante, pois um endpoint bem escrito pode reduzir a complexidade do código.
+
+## Características de uma API RESTFul
+
+Para uma API ser considerada RESTful ela deve seguir o padrão REST aplicando:
+
+- Interface uniforme
+- Arquitetura cliente-servidor
+- Sem Estado
+- Dados armazenáveis em cache
+- Sistema em camadas
+- Código sob demanda
+
+## Interface Uniforme
+
+- Endpoint retorna JSON, o outro endpoint da mesma API deve retornar a informação em JSON.
+- Endpoint tem o padrão `/<recurso>/<categoria do recurso>/<identificador>`: `/produtos/cosmeticos/{id}`, outros endpoints não podem ter um padrão diferente, como `/<categoria do recurso>/<recurso>/<identificador>`: `/alimentos/produtos/{id}`.
+
+## Arquitetura Cliente-Servidor
+
+Acontece quando é realizada a comunicação via `HTTP`, seguindo uma arquitetura baseada em clients, servidores e recursos.\
+Recursos é um substantivo que representa um objeto na vida real. No endpoint acima, `/produtos/cosmeticos`, produtos é um exemplo de recurso.
+
+## Sem estado
+
+Cada comunicação entre cliente-servidor, para ser atendida, deve conter todos os dados necessários, não dependendo de informações armazenadas anteriormente em outras requisições.
+
+## Dados Armazenáveis em Cache
+
+As respostas das requisições precisam ser possíveis de serem armazenadas em memória de rápido acesso, para que sejam utilizadas em requisições futuras. Como os dados armazenáveis em cache, as solicitações e respostas entre cliente-servidor ficam otimizadas.
+
+## Sistema em camadas
+
+Cada camada do sistema possui sua funcionalidade específica, no processo de requisição e no de respostas à comunicação entre cliente e servidor.\
+As camadas separadas se comunicam de forma hierárquica, com contratos de comunicação específicos ou eventos estabelecidos para o processamento das informações entre unidades.
+
+## Código sob demanda
+
+É a capacidade de uma API REST processar e responder a uma requisição quando ela chegar. Não se trata de velocidade, mas sim de disponibilidade, mesmo que a requisição cause erros. Quando ocorrem erros a API deve tratá-los e responder adequadamente à requisição, informando que ocorreram erros e instruindo quem fez a requisição a corrigi-los.
+
+
