@@ -1,30 +1,30 @@
 # Aceleração C#
 
-##### Seção 01 - Iniciando jornada na Aceleração ⏳
+##### Seção 01 - Iniciando jornada na Aceleração ✅
 
-- [ ] Dia 01: _Como decidir se essa Aceleração é para você ?_
-- [ ] Dia 02: _Prática e certificação_
-- [ ] Dia 03: _Organização de estudos_
-- [ ] Dia 04: _Comunidade_
+- [X] Dia 01: _Como decidir se essa Aceleração é para você ?_
+- [X] Dia 02: _Prática e certificação_
+- [X] Dia 03: _Organização de estudos_
+- [X] Dia 04: _Comunidade_
 
 ##### Seção 02 - Fundamentos e Recursos da Linguagem C# ⏳
 
-- [ ] Dia 01: _Hello, world em C# e .NET_
-- [ ] Dia 02: _Variáveis com Tipo, Condicionais e Loops_
-- [ ] Dia 03: _Arrays, Funções e Exceções_
-- [ ] Dia 04: _Manipulação de Tipos e Debugger_
-- [ ] Dia 05: _Projeto - TryBank_
+- [X] Dia 01: _Hello, world em C# e .NET_
+- [X] Dia 02: _Variáveis com Tipo, Condicionais e Loops_
+- [X] Dia 03: _Arrays, Funções e Exceções_
+- [X] Dia 04: _Manipulação de Tipos e Debugger_
+- [X] Dia 05: _Projeto - TryBank_
 
 ##### Seção 03 - Orientação a Objetos com C# ⏳
 
-- [ ] Dia 01: _Abstração e métodos estáticos_
-- [ ] Dia 02: _Composição e Herança_
-- [ ] Dia 03: _Projeto Aluguel de Carros_
+- [X] Dia 01: _Abstração e métodos estáticos_
+- [X] Dia 02: _Composição e Herança_
+- [X] Dia 03: _Projeto Aluguel de Carros_
 
 ##### Seção 04 - API C# Web ⏳
 
-- [ ] Dia 01: _ASP.NET - C# na Web_
-- [ ] Dia 02: _Criando APIs com ASP.NET_
+- [X] Dia 01: _ASP.NET - C# na Web_
+- [X] Dia 02: _Criando APIs com ASP.NET_
 - [ ] Dia 03: _Boas práticas de APIs_
 - [ ] Dia 04: _Projeto - API de Receitas_
 

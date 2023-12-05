@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/04-section-api-c-sharp-web/section04-day01-api-c-sharp-web/section04-day01-exercises/LabWebAPI/LabWebAPI.csproj": {}
+  },
+  "projects": {
+    "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/04-section-api-c-sharp-web/section04-day01-api-c-sharp-web/section04-day01-exercises/LabWebAPI/LabWebAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/04-section-api-c-sharp-web/section04-day01-api-c-sharp-web/section04-day01-exercises/LabWebAPI/LabWebAPI.csproj",
+        "projectName": "LabWebAPI",
+        "projectPath": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/04-section-api-c-sharp-web/section04-day01-api-c-sharp-web/section04-day01-exercises/LabWebAPI/LabWebAPI.csproj",
+        "packagesPath": "/home/davidrogger/.nuget/packages/",
+        "outputPath": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/04-section-api-c-sharp-web/section04-day01-api-c-sharp-web/section04-day01-exercises/LabWebAPI/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/davidrogger/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.123/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

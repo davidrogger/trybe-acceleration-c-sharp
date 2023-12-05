@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "f7gB8LiGdwEf83wzLHxHIWF7Iey+/L67NJdZdEIZVCFkN1vwW555e9vKL7Gp5fPPpIh98ZXqqhFvpRPCUQ1y+Q==",
+  "success": true,
+  "projectFilePath": "/home/davidrogger/Trybe/trybe-acceleration-c-sharp/04-section-api-c-sharp-web/section04-day01-api-c-sharp-web/section04-day01-exercises/LabWebAPI/LabWebAPI.csproj",
+  "expectedPackageFiles": [
+    "/home/davidrogger/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/davidrogger/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/davidrogger/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/home/davidrogger/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/home/davidrogger/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/home/davidrogger/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
